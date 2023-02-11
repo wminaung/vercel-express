@@ -1,7 +1,7 @@
 const hasUrl = localStorage.getItem("win");
 if (hasUrl) {
 } else {
-  window.location.href = "/api";
+  window.location.href = "/api/route";
 }
 
 const showUserData = async () => {

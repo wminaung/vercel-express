@@ -30,8 +30,8 @@ const myhtml = `
 
 `;
 
-app.get("/api", (req: Request, res: Response) => {
-  res.sendFile(myhtml);
+app.get("/api/route", (req: Request, res: Response) => {
+  res.send(myhtml);
 });
 
 app.post("/api/fileupload", (req: Request, res: Response) => {
