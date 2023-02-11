@@ -5,7 +5,7 @@ if (hasUrl) {
 }
 
 const showUserData = async () => {
-  const res = await fetch(hasUrl + "/api/users");
+  const res = await fetch(hasUrl + "/users");
   const data = await res.json();
   console.log(data);
 };
@@ -24,7 +24,7 @@ btn.addEventListener("click", async () => {
     formData.append("files", file);
   });
 
-  const res = await fetch(hasUrl + "/api/fileupload", {
+  const res = await fetch(hasUrl + "/fileupload", {
     method: "POST",
 
     body: formData,
