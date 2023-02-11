@@ -5,7 +5,7 @@ if (hasUrl) {
 }
 
 const showUserData = async () => {
-  const res = await fetch(hasUrl + "/users");
+  const res = await fetch(hasUrl + "/api/users");
   const data = await res.json();
   console.log(data);
 };
