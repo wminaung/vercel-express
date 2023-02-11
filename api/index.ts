@@ -11,7 +11,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
-const dir = __dirname + "/upload";
+const dir = __dirname + "/../image";
 if (!existsSync(dir)) {
   mkdirSync(dir);
 }
