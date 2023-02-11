@@ -31,7 +31,7 @@ const myhtml = `
 `;
 
 app.get("/api", (req: Request, res: Response) => {
-  res.send(myhtml);
+  res.sendFile(myhtml);
 });
 
 app.post("/api/fileupload", (req: Request, res: Response) => {
