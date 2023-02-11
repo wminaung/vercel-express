@@ -34,14 +34,14 @@ app.get("/api", (req: Request, res: Response) => {
   res.send(myhtml);
 });
 
-app.post("/fileupload", (req: Request, res: Response) => {
+app.post("/api/fileupload", (req: Request, res: Response) => {
   const form = formidable({ multiples: true });
   form.parse(req, (err, fields, files) => {
     res.json({ fields, files });
   });
 });
 
-app.get("/users", (req: Request, res: Response) => {
+app.get("/api/users", (req: Request, res: Response) => {
   res.send(users);
 });
 
