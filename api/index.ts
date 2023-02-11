@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import express from "express";
-import { v4 as uuid4 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 import bodyParser from "body-parser";
-import { createWriteStream, mkdirSync, existsSync } from "fs";
-import formidable from "formidable";
+import { createWriteStream, mkdirSync, existsSync, renameSync } from "fs";
+import formidable, { Fields, Files } from "formidable";
 
 require("dotenv").config();
 const app = express();
@@ -36,8 +36,28 @@ app.get("/api/route", (req: Request, res: Response) => {
 
 app.post("/api/fileupload", (req: Request, res: Response) => {
   const form = formidable({ multiples: true });
-  form.parse(req, (err, fields, files) => {
-    res.json({ fields, files });
+  form.parse(req, (err, fields: Fields, files: Files) => {
+    console.log(err, fields, files);
+    let myfiles = JSON.parse(JSON.stringify(files.uploadFiles));
+
+    if (!Array.isArray(myfiles)) {
+      let myfile = JSON.parse(JSON.stringify(files.uploadFiles));
+      let tempPath = myfile.filepath;
+      let newPath =
+        __dirname + "/../image/" + uuidv4() + myfile.originalFilename;
+      console.log(myfile.size);
+      renameSync(tempPath, newPath);
+    } else {
+      myfiles.forEach((file) => {
+        let tempPath = file.filepath;
+        let newPath =
+          __dirname + "/../image/" + uuidv4() + file.originalFilename;
+        console.log(file.filepath, file.originalFilename);
+        renameSync(tempPath, newPath);
+      });
+    }
+
+    res.json({ message: "success" });
   });
 });
 

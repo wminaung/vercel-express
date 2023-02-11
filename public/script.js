@@ -20,8 +20,7 @@ btn.addEventListener("click", async () => {
   const formData = new FormData();
 
   files.forEach((file) => {
-    console.log(file);
-    formData.append("files", file);
+    formData.append("uploadFiles", file);
   });
 
   const res = await fetch(hasUrl + "/fileupload", {
